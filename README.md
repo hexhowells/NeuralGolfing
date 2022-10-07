@@ -17,6 +17,6 @@ Get at least 98% accuracy on the MNIST test set using a model with the fewest nu
 | 1055                 | 98.06%           | 12     |
 
 ## Motivation
-The [EfficientNet paper](https://arxiv.org/abs/1905.11946) taught us that simply scalling neural networks isn't the most efficient way to generalise to a function and was able to greatly scale down model sizes and outperform state of the art models. Nerual golfing challenges are hopefully a fun method of demonstrating the importance of compressed model sizes.
+The [EfficientNet paper](https://arxiv.org/abs/1905.11946) taught us that simply scalling neural networks isn't the most efficient way to generalise to a function and was able to greatly scale down model sizes and outperform state of the art models. Neural golfing challenges are hopefully a fun method of demonstrating the importance of compressed model sizes.
 
 PyTorch's [MNIST example](https://github.com/pytorch/examples/blob/main/mnist/main.py) produces a model with 1,199,882 parameters that is able to get an accuracy >99%, The current most compressed model in this repo is able to achieve 1% below that accuracy with only 1055 parameters.
