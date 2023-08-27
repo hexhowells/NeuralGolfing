@@ -6,6 +6,7 @@ from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
 from tqdm import tqdm
 
+from model import Network
 import hyperparameters as hp
 
 
@@ -19,14 +20,14 @@ def count_parameters(model):
     return total_params
 
 
-def train(model, device, train_loader, optimizer, epoch):
+def train(model, device, train_loader, optimizer, lossfn, epoch):
     model.train()
     total = (60_000//hp.batch_size) + 1
     for batch_idx, (data, target) in tqdm(enumerate(train_loader), total=total):
         data, target = data.to(device), target.to(device)
         optimizer.zero_grad()
         output = model(data)
-        loss = F.nll_loss(output, target)
+        loss = lossfn(output, target)
         loss.backward()
         optimizer.step()
 
@@ -78,11 +79,12 @@ def main():
     count_parameters(model)
 
     optimizer = optim.Adam(model.parameters(), lr=hp.lr)
+    lossfn = nn.CrossEntropyLoss()
     scheduler = StepLR(optimizer, step_size=hp.lr_step_size, gamma=hp.gamma)
 
     for epoch in range(1, hp.epochs + 1):
         print("\nEpoch: {}".format(epoch))
-        train(model, device, train_loader, optimizer, epoch)
+        train(model, device, train_loader, optimizer, lossfn, epoch)
         acc = test(model, device, test_loader)
 
         scheduler.step()

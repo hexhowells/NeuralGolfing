@@ -19,7 +19,6 @@ class Network(nn.Module):
         )
         self.classifier = nn.Sequential(
             nn.Linear(36, 10),
-            nn.LogSoftmax(dim=1)
         )
             
     def forward(self, x):
