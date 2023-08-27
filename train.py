@@ -6,7 +6,6 @@ from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
 from tqdm import tqdm
 
-from originalModel import Network
 import hyperparameters as hp
 
 
