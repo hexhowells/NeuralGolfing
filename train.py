@@ -65,8 +65,8 @@ def main():
 
     transform=transforms.Compose([
         transforms.ToTensor(),
-        transforms.Normalize((0.1307,), (0.3081,)),
-        transforms.RandomRotation(degrees=5)
+        transforms.Normalize((0.1307,), (0.3081,))#,
+        #transforms.RandomRotation(degrees=5)
         ])
 
     training_data = datasets.MNIST('../data', train=True, download=True, transform=transform)
@@ -78,7 +78,7 @@ def main():
     model = Network().to(device)
     count_parameters(model)
 
-    optimizer = optim.Adam(model.parameters(), lr=hp.lr)
+    optimizer = optim.AdamW(model.parameters(), lr=hp.lr)
     lossfn = nn.CrossEntropyLoss()
     scheduler = StepLR(optimizer, step_size=hp.lr_step_size, gamma=hp.gamma)
 
