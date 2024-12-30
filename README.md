@@ -14,7 +14,7 @@ Get at least 98% accuracy on the MNIST test set using a model with the fewest nu
 ## Results
 | Number of parameters | highest accuracy | Epochs |
 | -------------------- | ---------------- | ------ |
-| 1055                 | 98.01%           | 8      |
+| 993                  | 98.12%           | 13      |
 
 ## Motivation
 The [EfficientNet paper](https://arxiv.org/abs/1905.11946) taught us that simply scalling neural networks isn't the most efficient way to generalise to a function and was able to greatly scale down model sizes and outperform state of the art models. Neural golfing challenges are hopefully a fun method of demonstrating the importance of compressed model sizes.
