@@ -1,4 +1,4 @@
-seed = 84362228797100
+seed = 89982759207800
 
 batch_size = 32
 lr = 0.001
@@ -7,7 +7,7 @@ epochs = 15
 lr_step_size = 4
 
 # Model architecture hyperparameters (default values)
-conv1_out = 7
+conv1_out = 6
 conv2_out = 5
 conv3_out = 4 
 
