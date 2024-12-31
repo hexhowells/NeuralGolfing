@@ -25,7 +25,8 @@ print(f'seed: {torch.random.initial_seed()}')
 # create datasets
 transform = transforms.Compose([
     transforms.ToTensor(),
-    transforms.Normalize((0.1307,), (0.3081,))
+    transforms.Normalize((0.1307,), (0.3081,)),
+
 ])
 
 training_data = datasets.MNIST('../data', train=True, download=True, transform=transform)
@@ -57,7 +58,8 @@ scheduler = StepLR(optimizer, step_size=hp.lr_step_size, gamma=hp.gamma)
 
 
 # train model
-for epoch in tqdm(range(hp.epochs)):
+for epoch in range(hp.epochs):
+    print(f'--- Epoch {epoch+1} ---')
     train(model, device, train_loader, optimizer, lossfn, epoch)
     test(model, device, train_loader, 'Train')
     test(model, device, test_loader)
