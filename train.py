@@ -3,12 +3,20 @@ import torch.nn.functional as F
 import hyperparameters as hp
 
 
-def count_parameters(model):
+def count_all_parameters(model):
     total_params = 0
     for _, parameter in model.named_parameters():
         if not parameter.requires_grad: continue
         total_params += parameter.numel()
 
+    return total_params
+
+
+def count_parameters(model):
+    total_params = 0
+    for p in model.parameters():
+        if p.requires_grad:
+            total_params += (p != 0).sum().item()  # Count non-zero parameters
     return total_params
 
 
@@ -39,7 +47,7 @@ def test(model, device, test_loader, label="Test"):
     test_loss /= len(test_loader.dataset)
     acc = 100. * correct / len(test_loader.dataset)
 
-    print('{} set: Average loss: {:.4f}, Accuracy: {}/{} ({:.2f}%)'.format(
-        label, test_loss, correct, len(test_loader.dataset), acc))
+    #print('{} set: Average loss: {:.4f}, Accuracy: {}/{} ({:.2f}%)'.format(
+    #    label, test_loss, correct, len(test_loader.dataset), acc))
 
     return acc
