@@ -7,15 +7,15 @@ class Network(nn.Module):
         super(Network, self).__init__()
         self.features = nn.Sequential(
             nn.Conv2d(1, conv1_out, kernel_size=kernel_size1, stride=1),
-            nn.ReLU(inplace=True),
+            nn.PReLU(num_parameters=conv1_out),
             nn.MaxPool2d(kernel_size=2),
 
             nn.Conv2d(conv1_out, conv2_out, kernel_size=kernel_size2, stride=1),
-            nn.ReLU(inplace=True),
+            nn.PReLU(num_parameters=conv2_out),
             nn.MaxPool2d(kernel_size=2),
 
             nn.Conv2d(conv2_out, conv3_out, kernel_size=kernel_size3, stride=1),
-            nn.ReLU(inplace=True),
+            nn.PReLU(num_parameters=conv3_out),
         )
 
         # Dynamically calculate the size of the flattened feature map
